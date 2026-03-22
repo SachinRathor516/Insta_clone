@@ -23,4 +23,11 @@
     follower:Array
     profile_image:String,   
 }
+
+==> userPost schema{
+   caption:String,
+   img_url:String,
+   user:user_id,
+   createdAt:Date-time
+}
   

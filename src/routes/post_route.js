@@ -1,0 +1,12 @@
+const express = require('express')
+const postRouter = express.Router()
+const postController = require('../cantrollers/post_controller')
+const multer = require('multer')
+const upload = multer({storage: multer.memoryStorage()})
+
+
+
+postRouter.post('/' ,upload.single('image_deadpool'), postController.createPostController)
+
+
+module.exports = postRouter
