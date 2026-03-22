@@ -1,0 +1,26 @@
+  ==>Authentication
+     =>register
+     =>login
+     =>log out (token blacklisting)
+     [OTP based registration]
+
+
+  ==>post
+     =>create post
+     =>can see the feed
+     =>like post 
+     =>save post
+
+  ==>user
+      =>follower
+      =>folllowing
+
+==>user schema{
+    username:String,
+    email:String,
+    password:String,
+    bio:String,
+    follower:Array
+    profile_image:String,   
+}
+  
