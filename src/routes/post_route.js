@@ -6,7 +6,7 @@ const upload = multer({storage: multer.memoryStorage()})
 
 
 
-postRouter.post('/' ,upload.single('image_deadpool'), postController.createPostController)
+postRouter.post('/' ,upload.single('image'), postController.createPostController)
 
 
 module.exports = postRouter
