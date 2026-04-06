@@ -1,6 +1,7 @@
 const postModel = require('../models/post_model')
 const ImageKit = require('@imagekit/nodejs')
 const { toFile } = require('@imagekit/nodejs')
+const likeModel = require('../models/like_model')
 
 
 
@@ -76,8 +77,44 @@ async function getPostDetailsController(req ,res) {
     })
 }
 
+async function likePostController(req , res) {
+    const username = req.user.username
+    const postId = req.params.postId
+
+    const post = await postModel.findById(postId)
+
+    if (!post) {
+        return res.status(404).json({
+            message:'post not found'
+        })
+    }
+
+    const isAlreadyLike = await likeModel.findOne({
+        user:username,
+        post:postId
+    })
+
+    if (isAlreadyLike) {
+        return res.status(200).json({
+            message:'you already liked this post',
+            post:isAlreadyLike
+        })
+    }
+
+    const like = await likeModel.create({
+        post:postId,
+        user:username
+    })
+
+    res.status(200).json({
+        message:'post liked successfully',
+        like
+    })
+}
+
 module.exports ={
     createPostController,
     getPostController,
-    getPostDetailsController
+    getPostDetailsController,
+    likePostController
 }
